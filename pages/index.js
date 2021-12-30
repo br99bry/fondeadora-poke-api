@@ -1,13 +1,19 @@
 import { connect } from "react-redux";
-import { setInfo } from "../redux/actions/main";
+import { setGeneraciones,setGeneracionSeleccionada } from "../redux/actions/main";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import Head from "next/head";
 import Link from "next/link";
+import styled from "styled-components";
+import CardGeneration from "../components/CardGeneration";
 
-const App = () => {
+const App = (props) => {
   const [img, setImg] = useState("");
-  const [generaciones, setGeneraciones] = useState([]);
+  const {generaciones, setGeneraciones, setGeneracionSeleccionada} = props;
+  const handleClick = (url) => {
+    setGeneracionSeleccionada(url);
+  }
+  
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
       .then((response) => response.json())
@@ -18,36 +24,39 @@ const App = () => {
       .then((data) => setGeneraciones(data.results));
   }, []);
 
+  
   return (
     <>
-      <Head>
-        <title>Mundo Pokemon</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <Wrapper>
-        <WelcomeCard>
-          <PictureMain src={img} />
-          <Title>Bienvenido a mundo Pokémon !!</Title>
-          <SubTitle>Elije una generación de pokémon</SubTitle>
-          <GenerationsWrap>
-            {generaciones.map((item) => (
-              <Link href={`generation/${item.url.charAt(item.url.length-2)}`} >
-                <a>
-                  <Card key={item.name}>
-                    <Text>{item.name}</Text>
-                  </Card>
-                </a>
-              </Link>
-            ))}
-          </GenerationsWrap>
-        </WelcomeCard>
-      </Wrapper>
+    <Head>
+      <title>Mundo Pokemon</title>
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    </Head>
+    <Wrapper>
+      <WelcomeCard>
+        <PictureMain src={img} />
+        <Title>
+          Bienvenido a mundo Pokémon <MdOutlineCatchingPokemon/> 
+        </Title>
+        <SubTitle>Elije una generación de pokémon</SubTitle>
+        <GenerationsWrap>
+          {
+          generaciones.length>0 &&
+          generaciones.map((item) => (
+            <Link key={item.name} href="generation" >
+              <a onClick={ () => handleClick(item.url) }>
+                <CardGeneration text={item.name} />
+              </a>
+            </Link>
+          ))
+          }
+        </GenerationsWrap>
+      </WelcomeCard>
+    </Wrapper>
     </>
   );
 };
 
 const Wrapper = styled.main`
-  /* background-color: #121f3d; */
   background-color: rgba(36, 56, 91, 1);
   opacity: 0.8;
   background-image: linear-gradient(
@@ -123,6 +132,7 @@ const PictureMain = styled.img`
 `;
 
 const Title = styled.h1`
+  font-family: 'Roboto Mono', monospace;
   font-size: 2.5rem;
   color: white;
   margin-bottom: 2.5rem;
@@ -130,6 +140,7 @@ const Title = styled.h1`
 `;
 
 const SubTitle = styled.h2`
+  font-family: 'Roboto Mono', monospace;
   font-size: 1.5rem;
   color: white;
   margin-bottom: 2.5rem;
@@ -142,32 +153,13 @@ const GenerationsWrap = styled.div`
   flex-wrap: wrap;
 `;
 
-const Card = styled.div`
-  width: 200px;
-  height: 200px;
-  background-image: url("./img/blob.svg");
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 450ms ease;
-  &:hover {
-    transform: scale(1.05);
-    filter: invert(1);
-  }
-`;
-
-const Text = styled.p`
-  font-size: 1.2rem;
-  color: white;
-`;
-
 const mapStateToProps = (state) => ({
-  userInfo: state.main,
+  generaciones: state.main.generaciones,
 });
 
 const mapDispatchToProps = {
-  setInfo: setInfo,
+  setGeneraciones: setGeneraciones,
+  setGeneracionSeleccionada: setGeneracionSeleccionada
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -64,7 +64,7 @@ ejemplo
 * [Jest](https://jestjs.io/) - Usado para pruebas unitarias
 * [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) - Usado para prueba unitarias basadas en React
 * [cypress](https://docs.cypress.io/) - Usado para pruebas end to end
-* [NPM](https://www.npmjs.com/) - Usado pcomo manejador de dependencias
+* [NPM](https://www.npmjs.com/) - Usado como manejador de dependencias
 
 ## Versionado 📌
 

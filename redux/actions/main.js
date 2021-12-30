@@ -1,6 +1,21 @@
-import * as t from '../types';
+import * as t from "../types";
 
-export const setInfo = (name) => ({
-    type: t.SET_NAME,
-    payload: name
+export const setGeneraciones = (generaciones) => ({
+  type: t.SET_GENERACIONES,
+  payload: generaciones,
+});
+
+export const setPokemones = (pokemones) => ({
+  type: t.SET_POKEMONES,
+  payload: pokemones,
+});
+
+export const setPokemonSeleccionado = (pokemon) => ({
+  type: t.SET_POKEMON_SELECCIONADO,
+  payload: pokemon,
+});
+
+export const setGeneracionSeleccionada = (generacion) => ({
+  type: t.SET_GENERACION_SELECCIONADA,
+  payload: generacion,
 });
