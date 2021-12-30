@@ -109,8 +109,8 @@ const Wrapper = styled.main`
     );
   background-size: 20px 35px;
   background-position: 0 0, 0 0, 10px 18px, 10px 18px, 0 0, 10px 18px;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,9 +119,12 @@ const Wrapper = styled.main`
 const WelcomeCard = styled.section`
   background-color: rgba(36, 56, 91, 1);
   width: 80%;
-  padding: 50px;
+  padding: 30px;
   border-radius: 5px;
   position: relative;
+  @media (max-width: 600px){
+    padding-top: 100px;
+  }
 `;
 
 const PictureMain = styled.img`
@@ -129,6 +132,10 @@ const PictureMain = styled.img`
   position: absolute;
   left: -50px;
   top: -50px;
+  @media (max-width: 600px){
+    left: calc(50% - 70px );
+    top: 0;
+  }
 `;
 
 const Title = styled.h1`
@@ -137,6 +144,12 @@ const Title = styled.h1`
   color: white;
   margin-bottom: 2.5rem;
   text-align: center;
+  @media (max-width: 1200px){
+    font-size: 2rem;
+  }
+  @media (max-width: 600px){
+    font-size: 1.5rem;
+  }
 `;
 
 const SubTitle = styled.h2`
@@ -144,6 +157,9 @@ const SubTitle = styled.h2`
   font-size: 1.5rem;
   color: white;
   margin-bottom: 2.5rem;
+  @media (max-width: 1200px){
+    font-size: 1rem;
+  }
 `;
 
 const GenerationsWrap = styled.div`
@@ -151,6 +167,9 @@ const GenerationsWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
+  @media (max-width: 600px){
+    justify-content: center;
+  }
 `;
 
 const mapStateToProps = (state) => ({

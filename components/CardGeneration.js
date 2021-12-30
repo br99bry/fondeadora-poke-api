@@ -10,8 +10,11 @@ const CardGeneration = ({text}) => {
 
 const Card = styled.div`
   width: 200px;
-  height: 200px;
+  height: 160px;
   background-image: url("./img/blob.svg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat:no-repeat ;
   display: flex;
   justify-content: center;
   align-items: center;
