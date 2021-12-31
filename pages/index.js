@@ -1,3 +1,4 @@
+import React from "react";
 import { connect } from "react-redux";
 import { setGeneraciones,setGeneracionSeleccionada } from "../redux/actions/main";
 import { useEffect, useState } from "react";
@@ -34,8 +35,7 @@ const App = (props) => {
     <Wrapper>
       <WelcomeCard>
         <PictureMain src={img} />
-        <Title>
-          Bienvenido a mundo Pokémon <MdOutlineCatchingPokemon/> 
+        <Title>Bienvenido a mundo Pokémon <MdOutlineCatchingPokemon/> 
         </Title>
         <SubTitle>Elije una generación de pokémon</SubTitle>
         <GenerationsWrap>

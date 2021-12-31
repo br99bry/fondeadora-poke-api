@@ -19,3 +19,12 @@ export const setGeneracionSeleccionada = (generacion) => ({
   type: t.SET_GENERACION_SELECCIONADA,
   payload: generacion,
 });
+
+const actions = {
+  setGeneraciones,
+  setPokemones,
+  setPokemonSeleccionado,
+  setGeneracionSeleccionada
+}
+
+export default actions;
